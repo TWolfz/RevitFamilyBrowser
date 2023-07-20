@@ -6,4 +6,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <StartProgram>C:\Program Files\Autodesk\Revit 2022\Revit.exe</StartProgram>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R2023|AnyCPU'">
+    <StartProgram>C:\Program Files\Autodesk\Revit 2017\Revit.exe</StartProgram>
+    <StartAction>Program</StartAction>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2021|AnyCPU'">
+    <StartProgram>C:\Program Files\Autodesk\Revit 2017\Revit.exe</StartProgram>
+    <StartAction>Program</StartAction>
+  </PropertyGroup>
 </Project>

@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "wrhDo/i7WEvPiIZw0OM/9rZoNK0gGgI3oC5VbHpoyODFPvjzCTvbleiFYAvvR3EPPJDJcTaZ9RUGcbk6zRWWhQ==",
+  "success": true,
+  "projectFilePath": "D:\\Projects\\Dev\\RevitFamilyBrowser\\RevitFamilyBrowser\\zRevitFamilyBrowser.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\thanh\\.nuget\\packages\\nice3point.revit.api.revitapi\\2021.1.50\\nice3point.revit.api.revitapi.2021.1.50.nupkg.sha512",
+    "C:\\Users\\thanh\\.nuget\\packages\\nice3point.revit.api.revitapiui\\2021.1.50\\nice3point.revit.api.revitapiui.2021.1.50.nupkg.sha512",
+    "C:\\Users\\thanh\\.nuget\\packages\\ookii.dialogs\\1.0.0\\ookii.dialogs.1.0.0.nupkg.sha512",
+    "C:\\Users\\thanh\\.nuget\\packages\\xamlstyler.console\\3.0.0\\xamlstyler.console.3.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -4,17 +4,17 @@
 library
 C#
 .cs
-D:\_DesctopApps\RevitFamilyBrowser\RevitFamilyBrowser\obj\Release\
+D:\Projects\Dev\RevitFamilyBrowser\RevitFamilyBrowser\obj\Release\
 zRevitFamilyBrowser
 none
 false
 TRACE
 
-3-1166998519
-4-899826109
-19666174835
-14523514454
+3-338233706
+4301421936
+20822544614
+141879290078
 AppSettings\SettingsControl.xaml;Browser\DockPanel.xaml;Pattern Elements Install\GridSetup.xaml;
 
-False
+True
 

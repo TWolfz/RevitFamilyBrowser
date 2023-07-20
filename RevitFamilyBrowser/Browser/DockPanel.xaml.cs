@@ -7,9 +7,7 @@ using Autodesk.Revit.UI;
 using zRevitFamilyBrowser.Revit_Classes;
 using System.IO;
 using System.Windows.Data;
-using System.ComponentModel;
 using System.Collections.ObjectModel;
-using System.Reflection;
 using System.Drawing;
 using System.Linq;
 

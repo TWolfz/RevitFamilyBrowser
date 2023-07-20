@@ -1,0 +1,23 @@
+D:\Projects\Dev\RevitFamilyBrowser\RevitFamilyBrowser\bin\2021\zRevitFamilyBrowser.addin
+D:\Projects\Dev\RevitFamilyBrowser\RevitFamilyBrowser\bin\2021\zRevitFamilyBrowser.dll.config
+D:\Projects\Dev\RevitFamilyBrowser\RevitFamilyBrowser\bin\2021\zRevitFamilyBrowser.dll
+D:\Projects\Dev\RevitFamilyBrowser\RevitFamilyBrowser\bin\2021\zRevitFamilyBrowser.pdb
+D:\Projects\Dev\RevitFamilyBrowser\RevitFamilyBrowser\bin\2021\Ookii.Dialogs.Wpf.dll
+D:\Projects\Dev\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\zRevitFamilyBrowser.csproj.AssemblyReference.cache
+D:\Projects\Dev\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\AppSettings\SettingsControl.g.cs
+D:\Projects\Dev\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\Browser\DockPanel.g.cs
+D:\Projects\Dev\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\Pattern Elements Install\GridSetup.g.cs
+D:\Projects\Dev\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\zRevitFamilyBrowser_MarkupCompile.cache
+D:\Projects\Dev\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\zRevitFamilyBrowser_MarkupCompile.lref
+D:\Projects\Dev\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\AppSettings\SettingsControl.baml
+D:\Projects\Dev\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\Browser\DockPanel.baml
+D:\Projects\Dev\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\Pattern Elements Install\GridSetup.baml
+D:\Projects\Dev\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\zRevitFamilyBrowser.g.resources
+D:\Projects\Dev\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\zRevitFamilyBrowser.Properties.Resources.resources
+D:\Projects\Dev\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\zRevitFamilyBrowser.csproj.GenerateResource.cache
+D:\Projects\Dev\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\zRevitFamilyBrowser.csproj.CoreCompileInputs.cache
+D:\Projects\Dev\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\zRevitFamilyBrowser.csproj.CopyComplete
+D:\Projects\Dev\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\zRevitFamilyBrowser.dll
+D:\Projects\Dev\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\zRevitFamilyBrowser.pdb
+D:\Projects\Dev\RevitFamilyBrowser\RevitFamilyBrowser\bin\2021\RevitUtils.dll
+D:\Projects\Dev\RevitFamilyBrowser\RevitFamilyBrowser\bin\2021\RevitUtils.pdb
