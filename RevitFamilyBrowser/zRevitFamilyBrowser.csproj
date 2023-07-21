@@ -69,7 +69,7 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-   <Reference Include="RevitUtils">
+    <Reference Include="RevitUtils">
       <HintPath>..\Ref\$(RevitVersion)\RevitUtils.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
@@ -178,16 +178,7 @@
     <Delete Files="$(AppData)\Autodesk\REVIT\Addins\2016\RevitFamilyBrowser.dll" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>copy "$(ProjectDir)*.addin" "$(ProgramData)\Autodesk\REVIT\Addins\2022"
-copy "$(ProjectDir)bin\debug\*.dll" "$(ProgramData)\Autodesk\REVIT\Addins\2022"
-
-copy "$(ProjectDir)*.addin" "$(ProgramData)\Autodesk\REVIT\Addins\2021"
-copy "$(ProjectDir)bin\debug\*.dll" "$(ProgramData)\Autodesk\REVIT\Addins\2021"
-
-copy "$(ProjectDir)*.addin" "$(ProgramData)\Autodesk\REVIT\Addins\2020"
-copy "$(ProjectDir)bin\debug\*.dll" "$(ProgramData)\Autodesk\REVIT\Addins\2020"
-
-copy "$(ProjectDir)*.addin" "$(ProgramData)\Autodesk\REVIT\Addins\2019"
-copy "$(ProjectDir)bin\debug\*.dll" "$(ProgramData)\Autodesk\REVIT\Addins\2019"</PostBuildEvent>
+    <PostBuildEvent>copy "$(ProjectDir)*.addin" "$(AppData)\Autodesk\Revit\Addins\2023"
+copy "$(ProjectDir)bin\R2023\*.dll" "$(AppData)\Autodesk\Revit\Addins\2023"</PostBuildEvent>
   </PropertyGroup>
 </Project>

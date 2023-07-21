@@ -90,3 +90,5 @@ D:\_DesctopApps\RevitFamilyBrowser\RevitFamilyBrowser\obj\Release\zRevitFamilyBr
 D:\_DesctopApps\RevitFamilyBrowser\RevitFamilyBrowser\obj\Release\zRevitFamilyBrowser.csproj.CopyComplete
 D:\_DesctopApps\RevitFamilyBrowser\RevitFamilyBrowser\obj\Release\zRevitFamilyBrowser.dll
 D:\_DesctopApps\RevitFamilyBrowser\RevitFamilyBrowser\obj\Release\zRevitFamilyBrowser.pdb
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\Release\zRevitFamilyBrowser.dll
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\Release\zRevitFamilyBrowser.pdb

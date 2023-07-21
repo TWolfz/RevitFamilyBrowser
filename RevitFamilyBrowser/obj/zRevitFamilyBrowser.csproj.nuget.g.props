@@ -5,14 +5,14 @@
     <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
     <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
     <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
-    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\thanh\.nuget\packages\</NuGetPackageFolders>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\thanh_\.nuget\packages\</NuGetPackageFolders>
     <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
     <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">6.6.0</NuGetToolVersion>
   </PropertyGroup>
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <SourceRoot Include="C:\Users\thanh\.nuget\packages\" />
+    <SourceRoot Include="C:\Users\thanh_\.nuget\packages\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <PkgXamlStyler_Console Condition=" '$(PkgXamlStyler_Console)' == '' ">C:\Users\thanh\.nuget\packages\xamlstyler.console\3.0.0</PkgXamlStyler_Console>
+    <PkgXamlStyler_Console Condition=" '$(PkgXamlStyler_Console)' == '' ">C:\Users\thanh_\.nuget\packages\xamlstyler.console\3.0.0</PkgXamlStyler_Console>
   </PropertyGroup>
 </Project>

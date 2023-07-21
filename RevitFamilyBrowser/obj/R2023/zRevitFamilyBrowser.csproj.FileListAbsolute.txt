@@ -1,0 +1,23 @@
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\bin\R2023\zRevitFamilyBrowser.addin
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\bin\R2023\zRevitFamilyBrowser.dll.config
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\bin\R2023\zRevitFamilyBrowser.dll
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\bin\R2023\zRevitFamilyBrowser.pdb
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\bin\R2023\Ookii.Dialogs.Wpf.dll
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\bin\R2023\RevitUtils.dll
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\bin\R2023\RevitUtils.pdb
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2023\zRevitFamilyBrowser.csproj.AssemblyReference.cache
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2023\AppSettings\SettingsControl.g.cs
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2023\Browser\DockPanel.g.cs
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2023\Pattern Elements Install\GridSetup.g.cs
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2023\zRevitFamilyBrowser_MarkupCompile.cache
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2023\zRevitFamilyBrowser_MarkupCompile.lref
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2023\AppSettings\SettingsControl.baml
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2023\Browser\DockPanel.baml
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2023\Pattern Elements Install\GridSetup.baml
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2023\zRevitFamilyBrowser.g.resources
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2023\zRevitFamilyBrowser.Properties.Resources.resources
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2023\zRevitFamilyBrowser.csproj.GenerateResource.cache
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2023\zRevitFamilyBrowser.csproj.CoreCompileInputs.cache
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2023\zRevitFamilyBrowser.csproj.CopyComplete
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2023\zRevitFamilyBrowser.dll
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2023\zRevitFamilyBrowser.pdb

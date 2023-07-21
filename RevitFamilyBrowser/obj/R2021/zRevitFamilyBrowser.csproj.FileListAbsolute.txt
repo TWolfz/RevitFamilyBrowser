@@ -21,3 +21,26 @@ D:\Projects\Dev\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\zRevitFamilyBrow
 D:\Projects\Dev\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\zRevitFamilyBrowser.pdb
 D:\Projects\Dev\RevitFamilyBrowser\RevitFamilyBrowser\bin\2021\RevitUtils.dll
 D:\Projects\Dev\RevitFamilyBrowser\RevitFamilyBrowser\bin\2021\RevitUtils.pdb
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\bin\2021\zRevitFamilyBrowser.addin
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\bin\2021\zRevitFamilyBrowser.dll.config
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\bin\2021\zRevitFamilyBrowser.dll
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\bin\2021\zRevitFamilyBrowser.pdb
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\bin\2021\Ookii.Dialogs.Wpf.dll
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\bin\2021\RevitUtils.dll
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\bin\2021\RevitUtils.pdb
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\zRevitFamilyBrowser.csproj.AssemblyReference.cache
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\AppSettings\SettingsControl.g.cs
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\Browser\DockPanel.g.cs
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\Pattern Elements Install\GridSetup.g.cs
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\zRevitFamilyBrowser_MarkupCompile.cache
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\zRevitFamilyBrowser_MarkupCompile.lref
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\AppSettings\SettingsControl.baml
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\Browser\DockPanel.baml
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\Pattern Elements Install\GridSetup.baml
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\zRevitFamilyBrowser.g.resources
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\zRevitFamilyBrowser.Properties.Resources.resources
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\zRevitFamilyBrowser.csproj.GenerateResource.cache
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\zRevitFamilyBrowser.csproj.CoreCompileInputs.cache
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\zRevitFamilyBrowser.csproj.CopyComplete
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\zRevitFamilyBrowser.dll
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2021\zRevitFamilyBrowser.pdb

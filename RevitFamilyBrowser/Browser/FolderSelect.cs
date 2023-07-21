@@ -78,7 +78,7 @@ namespace zRevitFamilyBrowser.Revit_Classes
             return Result.Succeeded;
         }
 
-        private List<string> GetFamilyPath(string dir)
+        public List<string> GetFamilyPath(string dir)
         {
             List<string> FamiliesList = new List<string>();
             foreach (var item in Directory.GetFiles(dir))
@@ -159,7 +159,7 @@ namespace zRevitFamilyBrowser.Revit_Classes
             }
         }
         
-        private Family GetFamilyFromPath(string path, Document doc)
+        public Family GetFamilyFromPath(string path, Document doc)
         {
             Family family = null;
             int index = path.LastIndexOf('\\') + 1;

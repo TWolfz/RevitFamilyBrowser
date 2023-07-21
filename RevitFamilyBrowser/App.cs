@@ -15,6 +15,9 @@ using System.Collections.Generic;
 using Autodesk.Revit.UI.Events;
 using System.Linq;
 using TWolfz.Revit;
+using System.Drawing.Imaging;
+using System.Windows.Controls;
+using DockPanel = zRevitFamilyBrowser.WPF_Classes.DockPanel;
 
 #endregion
 
@@ -26,26 +29,27 @@ namespace zRevitFamilyBrowser
         {
             AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(CurrentDomain_AssemblyResolve);
         }
+        private DockPanel dockPanel;
 
         public Result OnStartup(UIControlledApplication a)
         {
-            RevitApp.Init(a);
-
+            var test = Properties.Settings.Default;
+            
             a.CreateRibbonTab("Familien Browser"); //Familien Browser Families Browser
             RibbonPanel G17 = a.CreateRibbonPanel("Familien Browser", "Familien Browser");
             string path = Assembly.GetExecutingAssembly().Location;
-
+            
             SingleInstallEvent handler = new SingleInstallEvent();
             ExternalEvent exEvent = ExternalEvent.Create(handler);
 
-            DockPanel dockPanel = new DockPanel(exEvent, handler);
+            dockPanel = new DockPanel(exEvent, handler);
             DockablePaneId dpID = new DockablePaneId(new Guid("FA0C04E6-F9E7-413A-9D33-CFE32622E7B8"));
             a.RegisterDockablePane(dpID, "Familien Browser", (IDockablePaneProvider)dockPanel);
 
             PushButtonData btnShow = new PushButtonData("ShowPanel", "Panel\nanzeigen", path, "zRevitFamilyBrowser.Revit_Classes.ShowPanel"); //Panel anzeigen ShowPanel
             btnShow.LargeImage = Tools.GetImage(Resources.IconShowPanel.GetHbitmap());
             RibbonItem ri1 = G17.AddItem(btnShow);
-
+            
             PushButtonData btnFolder = new PushButtonData("OpenFolder", "Verzeichnis\nöffnen", path, "zRevitFamilyBrowser.Revit_Classes.FolderSelect");   //Verzeichnis  öffnen      
             btnFolder.LargeImage = Tools.GetImage(Resources.OpenFolder.GetHbitmap());
             RibbonItem ri2 = G17.AddItem(btnFolder);
@@ -64,7 +68,7 @@ namespace zRevitFamilyBrowser
             // a.ControlledApplication.DocumentChanged += OnDocChanged;
             a.ControlledApplication.DocumentOpened += OnDocOpened;
             a.ViewActivated += OnViewActivated;
-
+            
             if (File.Exists(Properties.Settings.Default.SettingPath))
             {
                 Properties.Settings.Default.RootFolder = File.ReadAllText(Properties.Settings.Default.SettingPath);
@@ -90,7 +94,6 @@ namespace zRevitFamilyBrowser
            // a.ControlledApplication.DocumentChanged -= OnDocChanged;
             a.ViewActivated -= OnViewActivated;
 
-
             Properties.Settings.Default.FamilyPath = string.Empty;
             Properties.Settings.Default.FamilyName = string.Empty;
             Properties.Settings.Default.FamilySymbol = string.Empty;
@@ -103,12 +106,65 @@ namespace zRevitFamilyBrowser
         {
             Tools.CreateImages(e.Document);
             Tools.CollectFamilyData(e.Document);
+            Document doc = e.Document;
+            FolderSelect folderSelect = new FolderSelect();
+            List<string> FamilyPath = folderSelect.GetFamilyPath(Properties.Settings.Default.RootFolder);
+
+            List<string> FamilyInstance = new List<string>();
+            using (var transaction = new Transaction(doc, "Family Symbol Collecting"))
+            {
+                transaction.Start();
+                Family family = null;
+                FamilySymbol symbol = null;
+                foreach (var item in FamilyPath)
+                {
+                    if (!doc.LoadFamily(item, out family))
+                    {
+                        family = folderSelect.GetFamilyFromPath(item, doc);
+                    }
+
+                    if (family == null)
+                    {
+                        TaskDialog.Show("Error", item);
+                        continue;
+                    }
+
+
+                    ISet<ElementId> familySymbolId = family.GetFamilySymbolIds();
+
+                    foreach (ElementId id in familySymbolId)
+                    {
+                        symbol = family.Document.GetElement(id) as FamilySymbol;
+                        if (symbol == null) continue;
+                        FamilyInstance.Add(symbol.Name.ToString() + " " + item);
+
+                        string TempImgFolder = System.IO.Path.GetTempPath() + "FamilyBrowser\\";
+                        string filename = TempImgFolder + symbol.Name + ".bmp";
+
+                        if (!File.Exists(filename))
+                        {
+                            System.Drawing.Size imgSize = new System.Drawing.Size(200, 200);
+                            Bitmap image = symbol.GetPreviewImage(imgSize);
+                            BitmapEncoder encoder = new BmpBitmapEncoder();
+                            encoder.Frames.Add(BitmapFrame.Create(Tools.ConvertBitmapToBitmapSource(image)));
+                            FileStream file = new FileStream(filename, FileMode.Create, FileAccess.Write);
+
+                            encoder.Save(file);
+                            file.Close();
+                        }
+                    }
+                }
+                transaction.RollBack();
+            }
+            dockPanel.Temp = string.Empty;
         }
 
         private void OnDocOpened(object sender, DocumentOpenedEventArgs e)
         {
+ 
             Tools.CreateImages(e.Document);
             Tools.CollectFamilyData(e.Document);
+            
         }
 
         //private void OnDocChanged(object sender, DocumentChangedEventArgs e)

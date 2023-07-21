@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETFramework,Version=v4.8": {
-      "Nice3point.Revit.Api.RevitAPI/2021.1.50": {
+      "Nice3point.Revit.Api.RevitAPI/2023.1.1": {
         "type": "package",
         "compile": {
           "ref/net48/RevitAPI.dll": {
@@ -10,7 +10,7 @@
           }
         }
       },
-      "Nice3point.Revit.Api.RevitAPIUI/2021.1.50": {
+      "Nice3point.Revit.Api.RevitAPIUI/2023.1.1": {
         "type": "package",
         "compile": {
           "ref/net48/RevitAPIUI.dll": {
@@ -36,7 +36,7 @@
       }
     },
     ".NETFramework,Version=v4.8/win": {
-      "Nice3point.Revit.Api.RevitAPI/2021.1.50": {
+      "Nice3point.Revit.Api.RevitAPI/2023.1.1": {
         "type": "package",
         "compile": {
           "ref/net48/RevitAPI.dll": {
@@ -44,7 +44,7 @@
           }
         }
       },
-      "Nice3point.Revit.Api.RevitAPIUI/2021.1.50": {
+      "Nice3point.Revit.Api.RevitAPIUI/2023.1.1": {
         "type": "package",
         "compile": {
           "ref/net48/RevitAPIUI.dll": {
@@ -70,7 +70,7 @@
       }
     },
     ".NETFramework,Version=v4.8/win-arm64": {
-      "Nice3point.Revit.Api.RevitAPI/2021.1.50": {
+      "Nice3point.Revit.Api.RevitAPI/2023.1.1": {
         "type": "package",
         "compile": {
           "ref/net48/RevitAPI.dll": {
@@ -78,7 +78,7 @@
           }
         }
       },
-      "Nice3point.Revit.Api.RevitAPIUI/2021.1.50": {
+      "Nice3point.Revit.Api.RevitAPIUI/2023.1.1": {
         "type": "package",
         "compile": {
           "ref/net48/RevitAPIUI.dll": {
@@ -104,7 +104,7 @@
       }
     },
     ".NETFramework,Version=v4.8/win-x64": {
-      "Nice3point.Revit.Api.RevitAPI/2021.1.50": {
+      "Nice3point.Revit.Api.RevitAPI/2023.1.1": {
         "type": "package",
         "compile": {
           "ref/net48/RevitAPI.dll": {
@@ -112,7 +112,7 @@
           }
         }
       },
-      "Nice3point.Revit.Api.RevitAPIUI/2021.1.50": {
+      "Nice3point.Revit.Api.RevitAPIUI/2023.1.1": {
         "type": "package",
         "compile": {
           "ref/net48/RevitAPIUI.dll": {
@@ -138,7 +138,7 @@
       }
     },
     ".NETFramework,Version=v4.8/win-x86": {
-      "Nice3point.Revit.Api.RevitAPI/2021.1.50": {
+      "Nice3point.Revit.Api.RevitAPI/2023.1.1": {
         "type": "package",
         "compile": {
           "ref/net48/RevitAPI.dll": {
@@ -146,7 +146,7 @@
           }
         }
       },
-      "Nice3point.Revit.Api.RevitAPIUI/2021.1.50": {
+      "Nice3point.Revit.Api.RevitAPIUI/2023.1.1": {
         "type": "package",
         "compile": {
           "ref/net48/RevitAPIUI.dll": {
@@ -173,31 +173,31 @@
     }
   },
   "libraries": {
-    "Nice3point.Revit.Api.RevitAPI/2021.1.50": {
-      "sha512": "GEOe00VGplNE5ivVRh2MjOmuh71ZOHhB6ihgtrLZRjOAYjhRpv8KrDKJZS0YY1FzqfjbCXdgKZl2oRrb0izZzA==",
+    "Nice3point.Revit.Api.RevitAPI/2023.1.1": {
+      "sha512": "VAYOKJf11EawE1ttMyLDuemlkRBx2TCQFVM6+EYYcPO/3wbIqligTxPwWzpc70bfVtyPY58I+3h6Idnp2T2NmQ==",
       "type": "package",
-      "path": "nice3point.revit.api.revitapi/2021.1.50",
+      "path": "nice3point.revit.api.revitapi/2023.1.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "License.md",
         "images/PackageIcon.png",
-        "nice3point.revit.api.revitapi.2021.1.50.nupkg.sha512",
+        "nice3point.revit.api.revitapi.2023.1.1.nupkg.sha512",
         "nice3point.revit.api.revitapi.nuspec",
         "ref/net48/RevitAPI.dll",
         "ref/net48/RevitAPI.xml"
       ]
     },
-    "Nice3point.Revit.Api.RevitAPIUI/2021.1.50": {
-      "sha512": "jD5Ya9UfeSMhypsimIKoJdfzicDireQkpYsGNTycmN1o9OvsNH0QGAQlFkt8x63mRXLe2fDaK1yzwcZiz+e+cg==",
+    "Nice3point.Revit.Api.RevitAPIUI/2023.1.1": {
+      "sha512": "KHTUISsEfvrcDdpg36wJCezqP7B4uwH9R3mLOM0K9MBT+PNV5wLSnrhi5vuPHx8kcIQKoNdLbQljh16/hSJz/A==",
       "type": "package",
-      "path": "nice3point.revit.api.revitapiui/2021.1.50",
+      "path": "nice3point.revit.api.revitapiui/2023.1.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "License.md",
         "images/PackageIcon.png",
-        "nice3point.revit.api.revitapiui.2021.1.50.nupkg.sha512",
+        "nice3point.revit.api.revitapiui.2023.1.1.nupkg.sha512",
         "nice3point.revit.api.revitapiui.nuspec",
         "ref/net48/RevitAPIUI.dll",
         "ref/net48/RevitAPIUI.xml"
@@ -245,27 +245,27 @@
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.8": [
-      "Nice3point.Revit.Api.RevitAPI >= 2021.*",
-      "Nice3point.Revit.Api.RevitAPIUI >= 2021.*",
+      "Nice3point.Revit.Api.RevitAPI >= 2023.*",
+      "Nice3point.Revit.Api.RevitAPIUI >= 2023.*",
       "Ookii.Dialogs >= 1.0.0",
       "XamlStyler.Console >= 3.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\thanh\\.nuget\\packages\\": {}
+    "C:\\Users\\thanh_\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\Dev\\RevitFamilyBrowser\\RevitFamilyBrowser\\zRevitFamilyBrowser.csproj",
+      "projectUniqueName": "D:\\Binh's Folder\\From Github\\TWolf\\RevitFamilyBrowser\\RevitFamilyBrowser\\zRevitFamilyBrowser.csproj",
       "projectName": "zRevitFamilyBrowser",
-      "projectPath": "D:\\Projects\\Dev\\RevitFamilyBrowser\\RevitFamilyBrowser\\zRevitFamilyBrowser.csproj",
-      "packagesPath": "C:\\Users\\thanh\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\Dev\\RevitFamilyBrowser\\RevitFamilyBrowser\\obj\\",
+      "projectPath": "D:\\Binh's Folder\\From Github\\TWolf\\RevitFamilyBrowser\\RevitFamilyBrowser\\zRevitFamilyBrowser.csproj",
+      "packagesPath": "C:\\Users\\thanh_\\.nuget\\packages\\",
+      "outputPath": "D:\\Binh's Folder\\From Github\\TWolf\\RevitFamilyBrowser\\RevitFamilyBrowser\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
-        "C:\\Users\\thanh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\thanh_\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -286,11 +286,11 @@
         "dependencies": {
           "Nice3point.Revit.Api.RevitAPI": {
             "target": "Package",
-            "version": "[2021.*, )"
+            "version": "[2023.*, )"
           },
           "Nice3point.Revit.Api.RevitAPIUI": {
             "target": "Package",
-            "version": "[2021.*, )"
+            "version": "[2023.*, )"
           },
           "Ookii.Dialogs": {
             "target": "Package",

@@ -4,7 +4,7 @@
 library
 C#
 .cs
-D:\Projects\Dev\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2023\
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2023\
 zRevitFamilyBrowser
 none
 false
@@ -13,8 +13,8 @@ TRACE;DEBUG;R2023
 3-338233706
 4301421936
 202086720166
-141879290078
+15114124362
 AppSettings\SettingsControl.xaml;Browser\DockPanel.xaml;Pattern Elements Install\GridSetup.xaml;
 
-False
+True
 

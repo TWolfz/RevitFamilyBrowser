@@ -19,6 +19,11 @@ namespace zRevitFamilyBrowser.WPF_Classes
         private SingleInstallEvent m_Handler;
 
         private string temp = string.Empty;
+        public string Temp
+        {
+            get => temp;
+            set => temp = value;
+        }
         private string collectedData = string.Empty;
         private int ImageListLength = 0;
 
@@ -120,14 +125,14 @@ namespace zRevitFamilyBrowser.WPF_Classes
             string[] ImageList = Directory.GetFiles(System.IO.Path.GetTempPath() + "FamilyBrowser\\");
 
             if (temp != Properties.Settings.Default.SymbolList)
-            {
+                {
                 temp = Properties.Settings.Default.SymbolList;
                 string category = Properties.Settings.Default.RootFolder;
                 label_CategoryName.Content = " " + category.Substring(category.LastIndexOf("\\") + 1);
 
                 List<string> list = new List<string>(temp.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries));
                 ObservableCollection<FamilyData> fi = new ObservableCollection<FamilyData>();
-
+                
                 foreach (var item in list)
                 {
                     FamilyData instance = new FamilyData();
