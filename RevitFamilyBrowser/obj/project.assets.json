@@ -2,12 +2,6 @@
   "version": 3,
   "targets": {
     ".NETFramework,Version=v4.8": {
-      "Fody/6.6.4": {
-        "type": "package",
-        "build": {
-          "build/Fody.targets": {}
-        }
-      },
       "Nice3point.Revit.Api.RevitAPI/2023.1.1": {
         "type": "package",
         "compile": {
@@ -27,21 +21,6 @@
         },
         "runtime": {
           "lib/net35/Ookii.Dialogs.Wpf.dll": {}
-        }
-      },
-      "PropertyChanged.Fody/4.1.0": {
-        "type": "package",
-        "dependencies": {
-          "Fody": "6.6.4"
-        },
-        "compile": {
-          "lib/net40/PropertyChanged.dll": {}
-        },
-        "runtime": {
-          "lib/net40/PropertyChanged.dll": {}
-        },
-        "build": {
-          "build/PropertyChanged.Fody.props": {}
         }
       },
       "XamlStyler.Console/3.0.0": {
@@ -49,12 +28,6 @@
       }
     },
     ".NETFramework,Version=v4.8/win": {
-      "Fody/6.6.4": {
-        "type": "package",
-        "build": {
-          "build/Fody.targets": {}
-        }
-      },
       "Nice3point.Revit.Api.RevitAPI/2023.1.1": {
         "type": "package",
         "compile": {
@@ -74,21 +47,6 @@
         },
         "runtime": {
           "lib/net35/Ookii.Dialogs.Wpf.dll": {}
-        }
-      },
-      "PropertyChanged.Fody/4.1.0": {
-        "type": "package",
-        "dependencies": {
-          "Fody": "6.6.4"
-        },
-        "compile": {
-          "lib/net40/PropertyChanged.dll": {}
-        },
-        "runtime": {
-          "lib/net40/PropertyChanged.dll": {}
-        },
-        "build": {
-          "build/PropertyChanged.Fody.props": {}
         }
       },
       "XamlStyler.Console/3.0.0": {
@@ -96,12 +54,6 @@
       }
     },
     ".NETFramework,Version=v4.8/win-x64": {
-      "Fody/6.6.4": {
-        "type": "package",
-        "build": {
-          "build/Fody.targets": {}
-        }
-      },
       "Nice3point.Revit.Api.RevitAPI/2023.1.1": {
         "type": "package",
         "compile": {
@@ -121,21 +73,6 @@
         },
         "runtime": {
           "lib/net35/Ookii.Dialogs.Wpf.dll": {}
-        }
-      },
-      "PropertyChanged.Fody/4.1.0": {
-        "type": "package",
-        "dependencies": {
-          "Fody": "6.6.4"
-        },
-        "compile": {
-          "lib/net40/PropertyChanged.dll": {}
-        },
-        "runtime": {
-          "lib/net40/PropertyChanged.dll": {}
-        },
-        "build": {
-          "build/PropertyChanged.Fody.props": {}
         }
       },
       "XamlStyler.Console/3.0.0": {
@@ -143,12 +80,6 @@
       }
     },
     ".NETFramework,Version=v4.8/win-x86": {
-      "Fody/6.6.4": {
-        "type": "package",
-        "build": {
-          "build/Fody.targets": {}
-        }
-      },
       "Nice3point.Revit.Api.RevitAPI/2023.1.1": {
         "type": "package",
         "compile": {
@@ -168,21 +99,6 @@
         },
         "runtime": {
           "lib/net35/Ookii.Dialogs.Wpf.dll": {}
-        }
-      },
-      "PropertyChanged.Fody/4.1.0": {
-        "type": "package",
-        "dependencies": {
-          "Fody": "6.6.4"
-        },
-        "compile": {
-          "lib/net40/PropertyChanged.dll": {}
-        },
-        "runtime": {
-          "lib/net40/PropertyChanged.dll": {}
-        },
-        "build": {
-          "build/PropertyChanged.Fody.props": {}
         }
       },
       "XamlStyler.Console/3.0.0": {
@@ -191,39 +107,6 @@
     }
   },
   "libraries": {
-    "Fody/6.6.4": {
-      "sha512": "vLZS+oa+ndUHYPlx/8n9bBTT3dHkCF0riml4paKq4D663+cZd47x1uagQo32D/gKFZ/sfmV1oqKaLmH0elxq4A==",
-      "type": "package",
-      "path": "fody/6.6.4",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "License.txt",
-        "build/Fody.targets",
-        "fody.6.6.4.nupkg.sha512",
-        "fody.nuspec",
-        "netclassictask/Fody.dll",
-        "netclassictask/FodyCommon.dll",
-        "netclassictask/FodyHelpers.dll",
-        "netclassictask/FodyIsolated.dll",
-        "netclassictask/Mono.Cecil.Pdb.dll",
-        "netclassictask/Mono.Cecil.Pdb.pdb",
-        "netclassictask/Mono.Cecil.Rocks.dll",
-        "netclassictask/Mono.Cecil.Rocks.pdb",
-        "netclassictask/Mono.Cecil.dll",
-        "netclassictask/Mono.Cecil.pdb",
-        "netstandardtask/Fody.dll",
-        "netstandardtask/FodyCommon.dll",
-        "netstandardtask/FodyHelpers.dll",
-        "netstandardtask/FodyIsolated.dll",
-        "netstandardtask/Mono.Cecil.Pdb.dll",
-        "netstandardtask/Mono.Cecil.Pdb.pdb",
-        "netstandardtask/Mono.Cecil.Rocks.dll",
-        "netstandardtask/Mono.Cecil.Rocks.pdb",
-        "netstandardtask/Mono.Cecil.dll",
-        "netstandardtask/Mono.Cecil.pdb"
-      ]
-    },
     "Nice3point.Revit.Api.RevitAPI/2023.1.1": {
       "sha512": "VAYOKJf11EawE1ttMyLDuemlkRBx2TCQFVM6+EYYcPO/3wbIqligTxPwWzpc70bfVtyPY58I+3h6Idnp2T2NmQ==",
       "type": "package",
@@ -269,27 +152,6 @@
         "readme.html"
       ]
     },
-    "PropertyChanged.Fody/4.1.0": {
-      "sha512": "6v+f9cI8YjnZH2WBHuOqWEAo8DFFNGFIdU8xD3AsL6fhV6Y8oAmVWd7XKk49t8DpeUBwhR/X+97+6Epvek0Y3A==",
-      "type": "package",
-      "path": "propertychanged.fody/4.1.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "analyzers/dotnet/cs/PropertyChanged.Fody.Analyzer.dll",
-        "build/PropertyChanged.Fody.props",
-        "lib/net40/PropertyChanged.dll",
-        "lib/net40/PropertyChanged.xml",
-        "lib/netstandard2.0/PropertyChanged.dll",
-        "lib/netstandard2.0/PropertyChanged.xml",
-        "lib/netstandard2.1/PropertyChanged.dll",
-        "lib/netstandard2.1/PropertyChanged.xml",
-        "propertychanged.fody.4.1.0.nupkg.sha512",
-        "propertychanged.fody.nuspec",
-        "weaver/PropertyChanged.Fody.dll",
-        "weaver/PropertyChanged.Fody.xcf"
-      ]
-    },
     "XamlStyler.Console/3.0.0": {
       "sha512": "ytuGh+YuuwtbzpquOvGCxFL5pfy3D7DRVdvQWEMQdhXHP7NOY7jrgC5je5lBRyxEAIdi05TRP428PU76FJa1lA==",
       "type": "package",
@@ -320,7 +182,6 @@
       "Nice3point.Revit.Api.RevitAPI >= 2023.*",
       "Nice3point.Revit.Api.RevitAPIUI >= 2023.*",
       "Ookii.Dialogs >= 1.0.0",
-      "PropertyChanged.Fody >= 4.1.0",
       "XamlStyler.Console >= 3.0.0"
     ]
   },
@@ -368,10 +229,6 @@
           "Ookii.Dialogs": {
             "target": "Package",
             "version": "[1.0.0, )"
-          },
-          "PropertyChanged.Fody": {
-            "target": "Package",
-            "version": "[4.1.0, )"
           },
           "XamlStyler.Console": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",

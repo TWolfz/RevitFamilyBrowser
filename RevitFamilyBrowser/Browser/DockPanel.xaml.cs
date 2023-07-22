@@ -21,23 +21,25 @@ namespace zRevitFamilyBrowser.WPF_Classes
         private ExternalEvent m_ExEvent;
         private SingleInstallEvent m_Handler;
 
-        private string temp = string.Empty;
-        public string Temp
+        private string tempFamilyFolder = string.Empty;
+        public string TempFamilyFolder
         {
-            get => temp;
-            set => temp = value;
+            get => tempFamilyFolder;
+            set => tempFamilyFolder = value;
         }
+
+        private string temp = string.Empty;
+
         private string collectedData = string.Empty;
         private int ImageListLength = 0;
 
         private string tempFamilyPath = string.Empty;
         private string tempFamilySymbol = string.Empty;
         private string tempFamilyName = string.Empty;
-        private FolderSelect folderSelect = new FolderSelect();
         private void RemoveItem(object sender, RoutedEventArgs e)
         {
             var foldersToRemove = Properties.Settings.Default.FamilyFolderPath.Cast<string>()
-                                   .Where(folderPath => folderPath.Contains(label_dfsdsds.SelectedItem.ToString())).First();
+                                   .Where(folderPath => folderPath.Contains(label_CategoryName.SelectedItem.ToString())).First();
             Properties.Settings.Default.FamilyFolderPath.Remove(foldersToRemove);
             Properties.Settings.Default.Save();
             Properties.Settings.Default.Reload();
@@ -47,7 +49,7 @@ namespace zRevitFamilyBrowser.WPF_Classes
                 string folderName = Path.GetFileName(familyPath);
                 familyNameFolder.Add(folderName);
             }
-            label_dfsdsds.ItemsSource = familyNameFolder;
+            label_CategoryName.ItemsSource = familyNameFolder;
         }
 
         public DockPanel(ExternalEvent exEvent, SingleInstallEvent handler)
@@ -65,9 +67,11 @@ namespace zRevitFamilyBrowser.WPF_Classes
                 string folderName = Path.GetFileName(familyPath);
                 familyNameFolder.Add(folderName);
             }
-
-            //label_dfsdsds.ItemsSource = Properties.Settings.Default.FamilyFolderPath;
-            label_dfsdsds.ItemsSource = familyNameFolder;
+            label_CategoryName.ItemsSource = familyNameFolder;
+            if (Properties.Settings.Default.RootFolder != string.Empty)
+            {
+                label_CategoryName.SelectedItem = familyNameFolder.Where(lastFolder => lastFolder == Path.GetFileName(Properties.Settings.Default.RootFolder)).First();
+            }
             m_ExEvent = exEvent;
             m_Handler = handler;
 
@@ -157,12 +161,20 @@ namespace zRevitFamilyBrowser.WPF_Classes
         public void GenerateGrid()
         {
             string[] ImageList = Directory.GetFiles(System.IO.Path.GetTempPath() + "FamilyBrowser\\");
-
-            if (temp != Properties.Settings.Default.SymbolList)
+            if (tempFamilyFolder != Properties.Settings.Default.RootFolder)
+            //if (temp != Properties.Settings.Default.SymbolList)
             {
+                List<string> familyNameFolder = new List<string>();
+                foreach (string familyPath in Properties.Settings.Default.FamilyFolderPath)
+                {
+                    string folderName = Path.GetFileName(familyPath);
+                    familyNameFolder.Add(folderName);
+                }
+                label_CategoryName.ItemsSource = familyNameFolder;
+                
                 temp = Properties.Settings.Default.SymbolList;
+                tempFamilyFolder = Properties.Settings.Default.RootFolder;
                 string category = Properties.Settings.Default.RootFolder;
-                label_CategoryName.Content = " " + category.Substring(category.LastIndexOf("\\") + 1);
 
                 List<string> list = new List<string>(temp.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries));
                 ObservableCollection<FamilyData> fi = new ObservableCollection<FamilyData>();
@@ -335,11 +347,11 @@ namespace zRevitFamilyBrowser.WPF_Classes
         private void SelectItem(object sender, SelectionChangedEventArgs e)
         {
             // Check if an item is selected
-            if (label_dfsdsds.SelectedItem != null)
+            if (label_CategoryName.SelectedItem != null)
             {
                 Properties.Settings.Default.SymbolList = string.Empty;
                 string folderPath = Properties.Settings.Default.FamilyFolderPath.Cast<string>()
-                                   .Where(folderName => folderName.Contains(label_dfsdsds.SelectedItem.ToString())).First();
+                                   .Where(folderName => folderName.Contains(label_CategoryName.SelectedItem.ToString())).First();
                 string[] rfaFiles = Directory.GetFiles(folderPath, "*.rfa");
 
                 foreach (string filePath in rfaFiles)
@@ -347,11 +359,20 @@ namespace zRevitFamilyBrowser.WPF_Classes
                     string fileName = Path.GetFileName(filePath);
                     string fileNameWithoutEx = Path.GetFileNameWithoutExtension(filePath);
                     string fullPath = Path.Combine(folderPath, fileName);
+                    Properties.Settings.Default.RootFolder = folderPath;
                     Properties.Settings.Default.SymbolList += $"{fileNameWithoutEx} {fullPath}" + "\n";
                     Properties.Settings.Default.Save();
                     Properties.Settings.Default.Reload();
+                    tempFamilyFolder = string.Empty;
                 }
             }
+            else
+            {
+                Properties.Settings.Default.RootFolder = string.Empty;
+                Properties.Settings.Default.SymbolList = string.Empty;
+                Properties.Settings.Default.Save();
+                Properties.Settings.Default.Reload();
+            }
         }
-        }
+    }
 }

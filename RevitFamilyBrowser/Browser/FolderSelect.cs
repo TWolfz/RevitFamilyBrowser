@@ -1,16 +1,11 @@
 ﻿using Autodesk.Revit.UI;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.Attributes;
 using System.IO;
-using zRevitFamilyBrowser.WPF_Classes;
 using System.Windows.Media.Imaging;
-using System.Windows;
 using System.Drawing;
-using Autodesk.Revit.DB.Events;
-using System.Diagnostics;
 using Ookii.Dialogs.Wpf;
 using TaskDialog = Autodesk.Revit.UI.TaskDialog;
 using System.Collections.Specialized;
@@ -67,7 +62,7 @@ namespace zRevitFamilyBrowser.Revit_Classes
 
             FamilyPath = GetFamilyPath(fbd.SelectedPath);
             FamilyName = GetFamilyName(FamilyPath);
-            Properties.Settings.Default.SymbolList = string.Empty;
+            //Properties.Settings.Default.SymbolList = string.Empty;
 
             StringCollection folderPaths = Properties.Settings.Default.FamilyFolderPath;
             if (!folderPaths.Contains(fbd.SelectedPath)) 
@@ -80,10 +75,10 @@ namespace zRevitFamilyBrowser.Revit_Classes
 
             SymbolName = GetSymbols(FamilyPath, doc);
 
-            foreach (var item in SymbolName)
+/*            foreach (var item in SymbolName)
             {
                 Properties.Settings.Default.SymbolList += item + "\n";
-            }
+            }*/
 
             return Result.Succeeded;
         }

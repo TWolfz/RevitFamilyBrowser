@@ -2,7 +2,6 @@
 using System;
 using Autodesk.Revit.UI;
 using System.Reflection;
-using zRevitFamilyBrowser.WPF_Classes;
 using zRevitFamilyBrowser.Revit_Classes;
 using zRevitFamilyBrowser.Properties;
 using System.IO;
@@ -10,13 +9,9 @@ using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.DB;
 using System.Drawing;
 using System.Windows.Media.Imaging;
-using System.Windows;
 using System.Collections.Generic;
 using Autodesk.Revit.UI.Events;
 using System.Linq;
-using TWolfz.Revit;
-using System.Drawing.Imaging;
-using System.Windows.Controls;
 using DockPanel = zRevitFamilyBrowser.WPF_Classes.DockPanel;
 
 #endregion
@@ -33,8 +28,6 @@ namespace zRevitFamilyBrowser
 
         public Result OnStartup(UIControlledApplication a)
         {
-            var test = Properties.Settings.Default;
-            
             a.CreateRibbonTab("Familien Browser"); //Familien Browser Families Browser
             RibbonPanel G17 = a.CreateRibbonPanel("Familien Browser", "Familien Browser");
             string path = Assembly.GetExecutingAssembly().Location;
@@ -159,7 +152,7 @@ namespace zRevitFamilyBrowser
                     transaction.RollBack();
                 }
             }
-            dockPanel.Temp = string.Empty;
+            dockPanel.TempFamilyFolder = string.Empty;
         }
 
         private void OnDocOpened(object sender, DocumentOpenedEventArgs e)

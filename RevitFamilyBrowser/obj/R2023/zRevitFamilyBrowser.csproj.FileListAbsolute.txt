@@ -20,7 +20,3 @@ D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R20
 D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2023\zRevitFamilyBrowser.csproj.CopyComplete
 D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2023\zRevitFamilyBrowser.dll
 D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2023\zRevitFamilyBrowser.pdb
-D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2023\zRevitFamilyBrowser.csproj.AssemblyReference.cache
-D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2023\zRevitFamilyBrowser.GeneratedMSBuildEditorConfig.editorconfig
-D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2023\zRevitFamilyBrowser.csproj.Fody.CopyLocal.cache
-D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2023\zRevitFamilyBrowser.csproj.Fody.RuntimeCopyLocal.cache
