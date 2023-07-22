@@ -68,7 +68,7 @@ namespace zRevitFamilyBrowser
             // a.ControlledApplication.DocumentChanged += OnDocChanged;
             a.ControlledApplication.DocumentOpened += OnDocOpened;
             a.ViewActivated += OnViewActivated;
-            
+
             if (File.Exists(Properties.Settings.Default.SettingPath))
             {
                 Properties.Settings.Default.RootFolder = File.ReadAllText(Properties.Settings.Default.SettingPath);
@@ -108,53 +108,56 @@ namespace zRevitFamilyBrowser
             Tools.CollectFamilyData(e.Document);
             Document doc = e.Document;
             FolderSelect folderSelect = new FolderSelect();
-            List<string> FamilyPath = folderSelect.GetFamilyPath(Properties.Settings.Default.RootFolder);
-
-            List<string> FamilyInstance = new List<string>();
-            using (var transaction = new Transaction(doc, "Family Symbol Collecting"))
+            foreach(string folderPath in Properties.Settings.Default.FamilyFolderPath) 
             {
-                transaction.Start();
-                Family family = null;
-                FamilySymbol symbol = null;
-                foreach (var item in FamilyPath)
+                //List<string> FamilyPath = folderSelect.GetFamilyPath(Properties.Settings.Default.RootFolder);
+                List<string> FamilyPath = folderSelect.GetFamilyPath(folderPath);
+                List<string> FamilyInstance = new List<string>();
+                using (var transaction = new Transaction(doc, "Family Symbol Collecting"))
                 {
-                    if (!doc.LoadFamily(item, out family))
+                    transaction.Start();
+                    Family family = null;
+                    FamilySymbol symbol = null;
+                    foreach (var item in FamilyPath)
                     {
-                        family = folderSelect.GetFamilyFromPath(item, doc);
-                    }
-
-                    if (family == null)
-                    {
-                        TaskDialog.Show("Error", item);
-                        continue;
-                    }
-
-
-                    ISet<ElementId> familySymbolId = family.GetFamilySymbolIds();
-
-                    foreach (ElementId id in familySymbolId)
-                    {
-                        symbol = family.Document.GetElement(id) as FamilySymbol;
-                        if (symbol == null) continue;
-                        FamilyInstance.Add(symbol.Name.ToString() + " " + item);
-
-                        string TempImgFolder = System.IO.Path.GetTempPath() + "FamilyBrowser\\";
-                        string filename = TempImgFolder + symbol.Name + ".bmp";
-
-                        if (!File.Exists(filename))
+                        if (!doc.LoadFamily(item, out family))
                         {
-                            System.Drawing.Size imgSize = new System.Drawing.Size(200, 200);
-                            Bitmap image = symbol.GetPreviewImage(imgSize);
-                            BitmapEncoder encoder = new BmpBitmapEncoder();
-                            encoder.Frames.Add(BitmapFrame.Create(Tools.ConvertBitmapToBitmapSource(image)));
-                            FileStream file = new FileStream(filename, FileMode.Create, FileAccess.Write);
+                            family = folderSelect.GetFamilyFromPath(item, doc);
+                        }
 
-                            encoder.Save(file);
-                            file.Close();
+                        if (family == null)
+                        {
+                            TaskDialog.Show("Error", item);
+                            continue;
+                        }
+
+
+                        ISet<ElementId> familySymbolId = family.GetFamilySymbolIds();
+
+                        foreach (ElementId id in familySymbolId)
+                        {
+                            symbol = family.Document.GetElement(id) as FamilySymbol;
+                            if (symbol == null) continue;
+                            FamilyInstance.Add(symbol.Name.ToString() + " " + item);
+
+                            string TempImgFolder = System.IO.Path.GetTempPath() + "FamilyBrowser\\";
+                            string filename = TempImgFolder + symbol.Name + ".bmp";
+
+                            if (!File.Exists(filename))
+                            {
+                                System.Drawing.Size imgSize = new System.Drawing.Size(200, 200);
+                                Bitmap image = symbol.GetPreviewImage(imgSize);
+                                BitmapEncoder encoder = new BmpBitmapEncoder();
+                                encoder.Frames.Add(BitmapFrame.Create(Tools.ConvertBitmapToBitmapSource(image)));
+                                FileStream file = new FileStream(filename, FileMode.Create, FileAccess.Write);
+
+                                encoder.Save(file);
+                                file.Close();
+                            }
                         }
                     }
+                    transaction.RollBack();
                 }
-                transaction.RollBack();
             }
             dockPanel.Temp = string.Empty;
         }

@@ -13,6 +13,7 @@ using Autodesk.Revit.DB.Events;
 using System.Diagnostics;
 using Ookii.Dialogs.Wpf;
 using TaskDialog = Autodesk.Revit.UI.TaskDialog;
+using System.Collections.Specialized;
 
 namespace zRevitFamilyBrowser.Revit_Classes
 {
@@ -47,8 +48,8 @@ namespace zRevitFamilyBrowser.Revit_Classes
                 else
                     fbd.SelectedPath = Properties.Settings.Default.RootFolder;
             }
-           
-           
+
+
             if (fbd.ShowDialog() == true)
             {
                 if (fbd.SelectedPath.Contains("ROCHE") && app.VersionNumber != "2015")
@@ -67,6 +68,14 @@ namespace zRevitFamilyBrowser.Revit_Classes
             FamilyPath = GetFamilyPath(fbd.SelectedPath);
             FamilyName = GetFamilyName(FamilyPath);
             Properties.Settings.Default.SymbolList = string.Empty;
+
+            StringCollection folderPaths = Properties.Settings.Default.FamilyFolderPath;
+            if (!folderPaths.Contains(fbd.SelectedPath)) 
+            {
+                folderPaths.Add(fbd.SelectedPath);
+                Properties.Settings.Default.FamilyFolderPath = folderPaths;
+            }
+
             Properties.Settings.Default.Save();
 
             SymbolName = GetSymbols(FamilyPath, doc);
@@ -75,6 +84,7 @@ namespace zRevitFamilyBrowser.Revit_Classes
             {
                 Properties.Settings.Default.SymbolList += item + "\n";
             }
+
             return Result.Succeeded;
         }
 
@@ -128,7 +138,7 @@ namespace zRevitFamilyBrowser.Revit_Classes
                         TaskDialog.Show("Error", item);
                         continue;
                     }
-                        
+
 
                     ISet<ElementId> familySymbolId = family.GetFamilySymbolIds();
 
@@ -137,7 +147,7 @@ namespace zRevitFamilyBrowser.Revit_Classes
                         symbol = family.Document.GetElement(id) as FamilySymbol;
                         if (symbol == null) continue;
                         FamilyInstance.Add(symbol.Name.ToString() + " " + item);
-                       
+
                         string TempImgFolder = System.IO.Path.GetTempPath() + "FamilyBrowser\\";
                         string filename = TempImgFolder + symbol.Name + ".bmp";
 
@@ -158,7 +168,7 @@ namespace zRevitFamilyBrowser.Revit_Classes
                 return FamilyInstance;
             }
         }
-        
+
         public Family GetFamilyFromPath(string path, Document doc)
         {
             Family family = null;

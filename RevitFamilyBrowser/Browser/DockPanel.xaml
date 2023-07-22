@@ -62,22 +62,43 @@
         <TabControl x:Name="tabControl" Margin="0,0,0,0">
             <TabItem Header="New Elements">
                 <Grid Background="WhiteSmoke">
-                    <Label
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="60"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label
+                        Grid.Column="0"
                         x:Name="label"
                         Width="60"
+                        Height="25"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         Content="Category: " />
-                    <Label
+                        <Label
                         x:Name="label_CategoryName"
                         Width="220"
                         Margin="80,0,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         Content="" />
-                    <ComboBox x:Name="label_dfsdsds" Width="220" Margin="80,0,0,0" >
-                        
-                    </ComboBox>
+                        <StackPanel VerticalAlignment="Top"   Grid.Column="1" Margin="25 0 20 0"   Height="25">
+                            <ComboBox x:Name="label_dfsdsds" VerticalAlignment="Stretch"   Height="20" VerticalContentAlignment="Center" SelectionChanged="SelectItem">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}"   Height="25"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                                <ComboBox.Resources>
+                                    <Style TargetType="Popup">
+                                        <Setter Property="Placement" Value="Bottom" />
+                                    </Style>
+                                </ComboBox.Resources>
+                            </ComboBox>
+                        </StackPanel>
+                        <Button   Height="25" Width="60" Grid.Column="2" Content="Delete" HorizontalAlignment="Right" VerticalAlignment="Top" Click="RemoveItem"></Button>
+                    </Grid>
                     <DataGrid
                         x:Name="dataGrid"
                         Margin="0,25,0,0"

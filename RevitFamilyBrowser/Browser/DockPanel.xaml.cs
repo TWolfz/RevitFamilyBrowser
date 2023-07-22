@@ -10,6 +10,9 @@ using System.Windows.Data;
 using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Linq;
+using System.Collections.Specialized;
+using TWolfz.Revit;
+using System.ComponentModel;
 
 namespace zRevitFamilyBrowser.WPF_Classes
 {
@@ -30,18 +33,49 @@ namespace zRevitFamilyBrowser.WPF_Classes
         private string tempFamilyPath = string.Empty;
         private string tempFamilySymbol = string.Empty;
         private string tempFamilyName = string.Empty;
+        private FolderSelect folderSelect = new FolderSelect();
+        private void RemoveItem(object sender, RoutedEventArgs e)
+        {
+            var foldersToRemove = Properties.Settings.Default.FamilyFolderPath.Cast<string>()
+                                   .Where(folderPath => folderPath.Contains(label_dfsdsds.SelectedItem.ToString())).First();
+            Properties.Settings.Default.FamilyFolderPath.Remove(foldersToRemove);
+            Properties.Settings.Default.Save();
+            Properties.Settings.Default.Reload();
+            List<string> familyNameFolder = new List<string>();
+            foreach (string familyPath in Properties.Settings.Default.FamilyFolderPath)
+            {
+                string folderName = Path.GetFileName(familyPath);
+                familyNameFolder.Add(folderName);
+            }
+            label_dfsdsds.ItemsSource = familyNameFolder;
+        }
 
         public DockPanel(ExternalEvent exEvent, SingleInstallEvent handler)
         {
             InitializeComponent();
+            if (Properties.Settings.Default.FamilyFolderPath == null)
+            {
+                Properties.Settings.Default.FamilyFolderPath = new StringCollection();
+                Properties.Settings.Default.Save();
+            }
+
+            List<string> familyNameFolder = new List<string>();
+            foreach (string familyPath in Properties.Settings.Default.FamilyFolderPath)
+            {
+                string folderName = Path.GetFileName(familyPath);
+                familyNameFolder.Add(folderName);
+            }
+
+            //label_dfsdsds.ItemsSource = Properties.Settings.Default.FamilyFolderPath;
+            label_dfsdsds.ItemsSource = familyNameFolder;
             m_ExEvent = exEvent;
             m_Handler = handler;
 
             System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 1 );
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 1);
             dispatcherTimer.Start();
-           
+
             CreateEmptyFamilyImage();
         }
 
@@ -125,14 +159,14 @@ namespace zRevitFamilyBrowser.WPF_Classes
             string[] ImageList = Directory.GetFiles(System.IO.Path.GetTempPath() + "FamilyBrowser\\");
 
             if (temp != Properties.Settings.Default.SymbolList)
-                {
+            {
                 temp = Properties.Settings.Default.SymbolList;
                 string category = Properties.Settings.Default.RootFolder;
                 label_CategoryName.Content = " " + category.Substring(category.LastIndexOf("\\") + 1);
 
                 List<string> list = new List<string>(temp.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries));
                 ObservableCollection<FamilyData> fi = new ObservableCollection<FamilyData>();
-                
+
                 foreach (var item in list)
                 {
                     FamilyData instance = new FamilyData();
@@ -185,7 +219,7 @@ namespace zRevitFamilyBrowser.WPF_Classes
         {
             if (dataGrid.Items.Count <= 0) return;
             var instance = dataGrid.SelectedItem as FamilyData;
-            SetProperty(instance);           
+            SetProperty(instance);
         }
 
         private void dataGridHistory_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -297,5 +331,27 @@ namespace zRevitFamilyBrowser.WPF_Classes
                 File.WriteAllBytes(di.ToString(), (byte[])converter.ConvertTo(Properties.Resources.RevitLogo, typeof(byte[])));
             }
         }
-    }
+
+        private void SelectItem(object sender, SelectionChangedEventArgs e)
+        {
+            // Check if an item is selected
+            if (label_dfsdsds.SelectedItem != null)
+            {
+                Properties.Settings.Default.SymbolList = string.Empty;
+                string folderPath = Properties.Settings.Default.FamilyFolderPath.Cast<string>()
+                                   .Where(folderName => folderName.Contains(label_dfsdsds.SelectedItem.ToString())).First();
+                string[] rfaFiles = Directory.GetFiles(folderPath, "*.rfa");
+
+                foreach (string filePath in rfaFiles)
+                {
+                    string fileName = Path.GetFileName(filePath);
+                    string fileNameWithoutEx = Path.GetFileNameWithoutExtension(filePath);
+                    string fullPath = Path.Combine(folderPath, fileName);
+                    Properties.Settings.Default.SymbolList += $"{fileNameWithoutEx} {fullPath}" + "\n";
+                    Properties.Settings.Default.Save();
+                    Properties.Settings.Default.Reload();
+                }
+            }
+        }
+        }
 }

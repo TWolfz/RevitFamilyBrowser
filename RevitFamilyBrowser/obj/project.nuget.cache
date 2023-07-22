@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "RbLLDUVlbADbhSYZm0tAjR5KoqMvGNWmQzXZ6zQuN04Hu/3F74Nbk5OWoFDPHlEO6ahdrv0jgQZqqwRffUgSNw==",
+  "dgSpecHash": "ATWQ1daYfS3UEGXTMc9KvUcStoAkG+BblhcJz3JB4zq5CuaOXEDIm2w/HedZ8ASv/b1GSoYZHzoZB3zgIVui1w==",
   "success": true,
   "projectFilePath": "D:\\Binh's Folder\\From Github\\TWolf\\RevitFamilyBrowser\\RevitFamilyBrowser\\zRevitFamilyBrowser.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\thanh_\\.nuget\\packages\\fody\\6.6.4\\fody.6.6.4.nupkg.sha512",
     "C:\\Users\\thanh_\\.nuget\\packages\\nice3point.revit.api.revitapi\\2023.1.1\\nice3point.revit.api.revitapi.2023.1.1.nupkg.sha512",
     "C:\\Users\\thanh_\\.nuget\\packages\\nice3point.revit.api.revitapiui\\2023.1.1\\nice3point.revit.api.revitapiui.2023.1.1.nupkg.sha512",
     "C:\\Users\\thanh_\\.nuget\\packages\\ookii.dialogs\\1.0.0\\ookii.dialogs.1.0.0.nupkg.sha512",
+    "C:\\Users\\thanh_\\.nuget\\packages\\propertychanged.fody\\4.1.0\\propertychanged.fody.4.1.0.nupkg.sha512",
     "C:\\Users\\thanh_\\.nuget\\packages\\xamlstyler.console\\3.0.0\\xamlstyler.console.3.0.0.nupkg.sha512"
   ],
   "logs": []
