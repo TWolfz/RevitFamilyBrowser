@@ -78,6 +78,7 @@ namespace zRevitFamilyBrowser.Revit_Classes
                 folderPaths.Add(fbd.SelectedPath);
                 Properties.Settings.Default.FamilyFolderPath = folderPaths;
                 Directory.CreateDirectory(addinFamilyFolderPath);
+                File.Copy(System.IO.Path.GetTempPath() + "FamilyBrowser\\RevitLogo.bmp", Path.Combine(addinFamilyFolderPath,"RevitLogo.bmp"), true);
             }
             SymbolName = GetSymbols(FamilyPath, doc, addinFamilyFolderPath);
             Properties.Settings.Default.IsReload = true;
@@ -91,7 +92,7 @@ namespace zRevitFamilyBrowser.Revit_Classes
 
             return Result.Succeeded;
         }
-
+        
         public List<string> GetFamilyPath(string dir)
         {
             List<string> FamiliesList = new List<string>();
@@ -167,9 +168,6 @@ namespace zRevitFamilyBrowser.Revit_Classes
        
                                 encoder.Save(file);
                                 file.Close();
-                                FileStream file1 = new FileStream(filename, FileMode.Create, FileAccess.Write);
-                                encoder.Save(file1);
-                                file1.Close();
                             }
                             else 
                             {

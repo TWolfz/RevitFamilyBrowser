@@ -10,10 +10,8 @@ using System.Windows.Data;
 using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Linq;
-using System.Collections.Specialized;
-using TWolfz.Revit;
-using System.ComponentModel;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace zRevitFamilyBrowser.WPF_Classes
 {
@@ -105,14 +103,22 @@ namespace zRevitFamilyBrowser.WPF_Classes
 
         public void GenerateHistoryGrid()
         {
+            //string[] ImageList = Directory.GetFiles(System.IO.Path.GetTempPath() + "FamilyBrowser\\");
+            Assembly addinAssembly = Assembly.GetExecutingAssembly();
+            string addinFolderPath = Path.Combine(Path.GetDirectoryName(addinAssembly.Location), "RevitFamilyBrowser");
             string[] ImageList = Directory.GetFiles(System.IO.Path.GetTempPath() + "FamilyBrowser\\");
+            foreach (string fFolderPath in Properties.Settings.Default.FamilyFolderPath)
+            {
+                string[] fImageList = Directory.GetFiles(Path.Combine(addinFolderPath, Path.GetFileName(fFolderPath)));
+                ImageList = ImageList.Concat(fImageList).ToArray();
+            }
 
             if (collectedData != Properties.Settings.Default.CollectedData || ImageList.Length != ImageListLength)
             {
                 ImageListLength = ImageList.Length;
                 collectedData = Properties.Settings.Default.CollectedData;
                 ObservableCollection<FamilyData> collectionData = new ObservableCollection<FamilyData>();
-                List<string> listData = new List<string>(collectedData.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries));
+                List<string> listData = new List<string>(collectedData.Split(new string[] {"\n"}, StringSplitOptions.RemoveEmptyEntries));
                 DirectoryInfo di = new DirectoryInfo(System.IO.Path.GetTempPath() + "FamilyBrowser\\RevitLogo.bmp");
                 foreach (var item in listData)
                 {
@@ -191,14 +197,18 @@ namespace zRevitFamilyBrowser.WPF_Classes
                 foreach (var item in list)
                 {
                     FamilyData instance = new FamilyData();
-                    int index = item.IndexOf(' ');
-                    instance.Name = item.Substring(0, index);
-                    instance.FullName = item.Substring(index + 1);
 
-                    string Name = item.Substring(index + 1);
-                    Name = Name.Substring(Name.LastIndexOf("\\") + 1);
-                    Name = Name.Substring(0, Name.IndexOf('.'));
-                    instance.FamilyName = Name;
+                    instance.Name = Path.GetFileNameWithoutExtension(item);
+                    instance.FullName = item;
+                    
+
+ 
+                    instance.FamilyName = Path.GetFileNameWithoutExtension(item);
+
+                    /*                    string Name = item.Substring(index + 1);
+                                        Name = Name.Substring(Name.LastIndexOf("\\") + 1);
+                                        Name = Name.Substring(0, Name.IndexOf('.'));
+                                        instance.FamilyName = Name;*/
 
                     foreach (var imageName in ImageList)
                     {
@@ -371,7 +381,7 @@ namespace zRevitFamilyBrowser.WPF_Classes
                         string fileNameWithoutEx = Path.GetFileNameWithoutExtension(filePath);
                         string fullPath = Path.Combine(folderPath, fileName);
                         Properties.Settings.Default.RootFolder = folderPath;
-                        Properties.Settings.Default.SymbolList += $"{fileNameWithoutEx} {fullPath}" + "\n";
+                        Properties.Settings.Default.SymbolList += $"{fullPath}" + "\n";
                         tempFamilyFolder = string.Empty;
                     }
                 }
