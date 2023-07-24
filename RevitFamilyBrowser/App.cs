@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using Autodesk.Revit.UI.Events;
 using System.Linq;
 using DockPanel = zRevitFamilyBrowser.WPF_Classes.DockPanel;
+using System.Collections.Specialized;
 
 #endregion
 
@@ -28,10 +29,37 @@ namespace zRevitFamilyBrowser
 
         public Result OnStartup(UIControlledApplication a)
         {
+            if (Properties.Settings.Default.FamilyFolderPath == null)
+            {
+                Properties.Settings.Default.FamilyFolderPath = new StringCollection();
+                Properties.Settings.Default.Save();
+            }
+            Assembly addinAssembly = Assembly.GetExecutingAssembly();
+            string addinFolderPath = Path.Combine(Path.GetDirectoryName(addinAssembly.Location), "RevitFamilyBrowser");
+            string[] folders = Directory.GetDirectories(addinFolderPath);
+            List<string> nameFamilyFolderPath = new List<string>();
+            foreach (string familyFolderPath in Properties.Settings.Default.FamilyFolderPath)
+            {
+                nameFamilyFolderPath.Add(Path.GetFileName(familyFolderPath));
+            }
+
+            // Now you have the file paths in the 'files' array
+            foreach (string folderPath in folders)
+            {
+                if (!nameFamilyFolderPath.Contains(Path.GetFileName(folderPath)))
+                {
+                    string[] files = Directory.GetFiles(folderPath);
+                    foreach (string filePath in files)
+                    {
+                        File.Delete(filePath);
+                    }
+                    Directory.Delete(folderPath);
+                }
+            }
             a.CreateRibbonTab("Familien Browser"); //Familien Browser Families Browser
             RibbonPanel G17 = a.CreateRibbonPanel("Familien Browser", "Familien Browser");
             string path = Assembly.GetExecutingAssembly().Location;
-            
+
             SingleInstallEvent handler = new SingleInstallEvent();
             ExternalEvent exEvent = ExternalEvent.Create(handler);
 
@@ -42,7 +70,7 @@ namespace zRevitFamilyBrowser
             PushButtonData btnShow = new PushButtonData("ShowPanel", "Panel\nanzeigen", path, "zRevitFamilyBrowser.Revit_Classes.ShowPanel"); //Panel anzeigen ShowPanel
             btnShow.LargeImage = Tools.GetImage(Resources.IconShowPanel.GetHbitmap());
             RibbonItem ri1 = G17.AddItem(btnShow);
-            
+
             PushButtonData btnFolder = new PushButtonData("OpenFolder", "Verzeichnis\nöffnen", path, "zRevitFamilyBrowser.Revit_Classes.FolderSelect");   //Verzeichnis  öffnen      
             btnFolder.LargeImage = Tools.GetImage(Resources.OpenFolder.GetHbitmap());
             RibbonItem ri2 = G17.AddItem(btnFolder);
@@ -84,14 +112,13 @@ namespace zRevitFamilyBrowser
         public Result OnShutdown(UIControlledApplication a)
         {
             a.ControlledApplication.DocumentOpened -= OnDocOpened;
-           // a.ControlledApplication.DocumentChanged -= OnDocChanged;
+            // a.ControlledApplication.DocumentChanged -= OnDocChanged;
             a.ViewActivated -= OnViewActivated;
 
             Properties.Settings.Default.FamilyPath = string.Empty;
             Properties.Settings.Default.FamilyName = string.Empty;
             Properties.Settings.Default.FamilySymbol = string.Empty;
             Properties.Settings.Default.Save();
-          
             return Result.Succeeded;
         }
 
@@ -99,68 +126,14 @@ namespace zRevitFamilyBrowser
         {
             Tools.CreateImages(e.Document);
             Tools.CollectFamilyData(e.Document);
-            Document doc = e.Document;
-            FolderSelect folderSelect = new FolderSelect();
-            foreach(string folderPath in Properties.Settings.Default.FamilyFolderPath) 
-            {
-                //List<string> FamilyPath = folderSelect.GetFamilyPath(Properties.Settings.Default.RootFolder);
-                List<string> FamilyPath = folderSelect.GetFamilyPath(folderPath);
-                List<string> FamilyInstance = new List<string>();
-                using (var transaction = new Transaction(doc, "Family Symbol Collecting"))
-                {
-                    transaction.Start();
-                    Family family = null;
-                    FamilySymbol symbol = null;
-                    foreach (var item in FamilyPath)
-                    {
-                        if (!doc.LoadFamily(item, out family))
-                        {
-                            family = folderSelect.GetFamilyFromPath(item, doc);
-                        }
-
-                        if (family == null)
-                        {
-                            TaskDialog.Show("Error", item);
-                            continue;
-                        }
-
-
-                        ISet<ElementId> familySymbolId = family.GetFamilySymbolIds();
-
-                        foreach (ElementId id in familySymbolId)
-                        {
-                            symbol = family.Document.GetElement(id) as FamilySymbol;
-                            if (symbol == null) continue;
-                            FamilyInstance.Add(symbol.Name.ToString() + " " + item);
-
-                            string TempImgFolder = System.IO.Path.GetTempPath() + "FamilyBrowser\\";
-                            string filename = TempImgFolder + symbol.Name + ".bmp";
-
-                            if (!File.Exists(filename))
-                            {
-                                System.Drawing.Size imgSize = new System.Drawing.Size(200, 200);
-                                Bitmap image = symbol.GetPreviewImage(imgSize);
-                                BitmapEncoder encoder = new BmpBitmapEncoder();
-                                encoder.Frames.Add(BitmapFrame.Create(Tools.ConvertBitmapToBitmapSource(image)));
-                                FileStream file = new FileStream(filename, FileMode.Create, FileAccess.Write);
-
-                                encoder.Save(file);
-                                file.Close();
-                            }
-                        }
-                    }
-                    transaction.RollBack();
-                }
-            }
-            dockPanel.TempFamilyFolder = string.Empty;
         }
 
         private void OnDocOpened(object sender, DocumentOpenedEventArgs e)
         {
- 
+
             Tools.CreateImages(e.Document);
             Tools.CollectFamilyData(e.Document);
-            
+
         }
 
         //private void OnDocChanged(object sender, DocumentChangedEventArgs e)

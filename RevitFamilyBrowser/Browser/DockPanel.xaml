@@ -16,7 +16,6 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type GroupItem}">
-
                         <Expander
                             x:Name="Expander"
                             Background="White"
@@ -86,6 +85,7 @@
                                 Height="20"
                                 VerticalAlignment="Stretch"
                                 VerticalContentAlignment="Center"
+                                ItemsSource="{Binding ElementName=myDockPanel, Path=familyNameFolder,UpdateSourceTrigger=PropertyChanged}"
                                 SelectionChanged="SelectItem">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>

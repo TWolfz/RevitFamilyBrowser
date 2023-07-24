@@ -9,6 +9,7 @@ using System.Drawing;
 using Ookii.Dialogs.Wpf;
 using TaskDialog = Autodesk.Revit.UI.TaskDialog;
 using System.Collections.Specialized;
+using System.Reflection;
 
 namespace zRevitFamilyBrowser.Revit_Classes
 {
@@ -63,17 +64,25 @@ namespace zRevitFamilyBrowser.Revit_Classes
             FamilyPath = GetFamilyPath(fbd.SelectedPath);
             FamilyName = GetFamilyName(FamilyPath);
             //Properties.Settings.Default.SymbolList = string.Empty;
-
+            Assembly addinAssembly = Assembly.GetExecutingAssembly();
+            string addinFolderPath = Path.Combine(Path.GetDirectoryName(addinAssembly.Location), "RevitFamilyBrowser");
+            if (!Directory.Exists(addinFolderPath))
+            {
+                Directory.CreateDirectory(addinFolderPath);
+            }
             StringCollection folderPaths = Properties.Settings.Default.FamilyFolderPath;
-            if (!folderPaths.Contains(fbd.SelectedPath)) 
+
+            string addinFamilyFolderPath = Path.Combine(Path.GetDirectoryName(addinAssembly.Location), "RevitFamilyBrowser", Path.GetFileName(fbd.SelectedPath));
+            if (!folderPaths.Contains(fbd.SelectedPath))
             {
                 folderPaths.Add(fbd.SelectedPath);
                 Properties.Settings.Default.FamilyFolderPath = folderPaths;
+                Directory.CreateDirectory(addinFamilyFolderPath);
             }
-
+            SymbolName = GetSymbols(FamilyPath, doc, addinFamilyFolderPath);
+            Properties.Settings.Default.IsReload = true;
             Properties.Settings.Default.Save();
 
-            SymbolName = GetSymbols(FamilyPath, doc);
 
 /*            foreach (var item in SymbolName)
             {
@@ -113,7 +122,7 @@ namespace zRevitFamilyBrowser.Revit_Classes
             return FamiliesName;
         }
 
-        public List<string> GetSymbols(List<string> FamilyPath, Document doc)
+        public List<string> GetSymbols(List<string> FamilyPath, Document doc, string addinFamilyFolderPath)
         {
             List<string> FamilyInstance = new List<string>();
             using (var transaction = new Transaction(doc, "Family Symbol Collecting"))
@@ -142,20 +151,30 @@ namespace zRevitFamilyBrowser.Revit_Classes
                         symbol = family.Document.GetElement(id) as FamilySymbol;
                         if (symbol == null) continue;
                         FamilyInstance.Add(symbol.Name.ToString() + " " + item);
-
-                        string TempImgFolder = System.IO.Path.GetTempPath() + "FamilyBrowser\\";
-                        string filename = TempImgFolder + symbol.Name + ".bmp";
-
-                        if (!File.Exists(filename))
+                        string addinImageFileName = addinFamilyFolderPath +"\\"+ symbol.Name + ".bmp";
+                        if (!File.Exists(addinImageFileName))
                         {
-                            System.Drawing.Size imgSize = new System.Drawing.Size(200, 200);
-                            Bitmap image = symbol.GetPreviewImage(imgSize);
-                            BitmapEncoder encoder = new BmpBitmapEncoder();
-                            encoder.Frames.Add(BitmapFrame.Create(Tools.ConvertBitmapToBitmapSource(image)));
-                            FileStream file = new FileStream(filename, FileMode.Create, FileAccess.Write);
+                            string TempImgFolder = System.IO.Path.GetTempPath() + "FamilyBrowser\\";
+                            string filename = TempImgFolder + symbol.Name + ".bmp";
 
-                            encoder.Save(file);
-                            file.Close();
+                            if (!File.Exists(filename))
+                            {
+                                System.Drawing.Size imgSize = new System.Drawing.Size(200, 200);
+                                Bitmap image = symbol.GetPreviewImage(imgSize);
+                                BitmapEncoder encoder = new BmpBitmapEncoder();
+                                encoder.Frames.Add(BitmapFrame.Create(Tools.ConvertBitmapToBitmapSource(image)));
+                                FileStream file = new FileStream(addinImageFileName, FileMode.Create, FileAccess.Write);
+       
+                                encoder.Save(file);
+                                file.Close();
+                                FileStream file1 = new FileStream(filename, FileMode.Create, FileAccess.Write);
+                                encoder.Save(file1);
+                                file1.Close();
+                            }
+                            else 
+                            {
+                                File.Copy(filename, addinImageFileName, true);
+                            }
                         }
                     }
                 }

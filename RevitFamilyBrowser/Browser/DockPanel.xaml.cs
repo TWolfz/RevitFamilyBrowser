@@ -13,6 +13,7 @@ using System.Linq;
 using System.Collections.Specialized;
 using TWolfz.Revit;
 using System.ComponentModel;
+using System.Reflection;
 
 namespace zRevitFamilyBrowser.WPF_Classes
 {
@@ -22,12 +23,23 @@ namespace zRevitFamilyBrowser.WPF_Classes
         private SingleInstallEvent m_Handler;
 
         private string tempFamilyFolder = string.Empty;
-        public string TempFamilyFolder
+        private static readonly DependencyProperty familyNameFolderProperty
+            = DependencyProperty.Register(
+            nameof(familyNameFolder),
+            typeof(ObservableCollection<string>),
+            typeof(DockPanel),
+            new PropertyMetadata(new ObservableCollection<string>()));
+        private ObservableCollection<string> familyNameFolder
         {
-            get => tempFamilyFolder;
-            set => tempFamilyFolder = value;
+            get
+            {
+                return GetValue(familyNameFolderProperty) as ObservableCollection<string>;
+            }
+            set
+            {
+                SetValue(familyNameFolderProperty, value);
+            }
         }
-
         private string temp = string.Empty;
 
         private string collectedData = string.Empty;
@@ -38,36 +50,27 @@ namespace zRevitFamilyBrowser.WPF_Classes
         private string tempFamilyName = string.Empty;
         private void RemoveItem(object sender, RoutedEventArgs e)
         {
-            var foldersToRemove = Properties.Settings.Default.FamilyFolderPath.Cast<string>()
-                                   .Where(folderPath => folderPath.Contains(label_CategoryName.SelectedItem.ToString())).First();
-            Properties.Settings.Default.FamilyFolderPath.Remove(foldersToRemove);
-            Properties.Settings.Default.Save();
-            Properties.Settings.Default.Reload();
-            List<string> familyNameFolder = new List<string>();
-            foreach (string familyPath in Properties.Settings.Default.FamilyFolderPath)
+            if (Properties.Settings.Default.FamilyFolderPath.Count > 0 && label_CategoryName.SelectedItem != null)
             {
-                string folderName = Path.GetFileName(familyPath);
-                familyNameFolder.Add(folderName);
+                string currentFolderName = label_CategoryName.SelectedItem.ToString();
+                string foldersToRemove = Properties.Settings.Default.FamilyFolderPath.Cast<string>()
+                                   .Where(fFolderPath => fFolderPath.Contains(currentFolderName)).First();
+                Properties.Settings.Default.FamilyFolderPath.Remove(foldersToRemove);
+                Properties.Settings.Default.Save();
+                familyNameFolder.Remove(currentFolderName);
             }
-            label_CategoryName.ItemsSource = familyNameFolder;
         }
 
         public DockPanel(ExternalEvent exEvent, SingleInstallEvent handler)
         {
             InitializeComponent();
-            if (Properties.Settings.Default.FamilyFolderPath == null)
-            {
-                Properties.Settings.Default.FamilyFolderPath = new StringCollection();
-                Properties.Settings.Default.Save();
-            }
 
-            List<string> familyNameFolder = new List<string>();
             foreach (string familyPath in Properties.Settings.Default.FamilyFolderPath)
             {
                 string folderName = Path.GetFileName(familyPath);
                 familyNameFolder.Add(folderName);
             }
-            label_CategoryName.ItemsSource = familyNameFolder;
+            //label_CategoryName.ItemsSource = familyNameFolder;
             if (Properties.Settings.Default.RootFolder != string.Empty)
             {
                 label_CategoryName.SelectedItem = familyNameFolder.Where(lastFolder => lastFolder == Path.GetFileName(Properties.Settings.Default.RootFolder)).First();
@@ -160,18 +163,24 @@ namespace zRevitFamilyBrowser.WPF_Classes
 
         public void GenerateGrid()
         {
-            string[] ImageList = Directory.GetFiles(System.IO.Path.GetTempPath() + "FamilyBrowser\\");
-            if (tempFamilyFolder != Properties.Settings.Default.RootFolder)
-            //if (temp != Properties.Settings.Default.SymbolList)
+            if (Properties.Settings.Default.IsReload)
             {
-                List<string> familyNameFolder = new List<string>();
-                foreach (string familyPath in Properties.Settings.Default.FamilyFolderPath)
+                Assembly addinAssembly = Assembly.GetExecutingAssembly();
+                string addinFolderPath = Path.Combine(Path.GetDirectoryName(addinAssembly.Location), "RevitFamilyBrowser");
+                string[] ImageList = Directory.GetFiles(Path.Combine(addinFolderPath, Path.GetFileName(Properties.Settings.Default.RootFolder)));
+                if (Properties.Settings.Default.RootFolder != string.Empty)
                 {
-                    string folderName = Path.GetFileName(familyPath);
-                    familyNameFolder.Add(folderName);
+                    string folderName = Path.GetFileName(Properties.Settings.Default.RootFolder);
+                    if (tempFamilyFolder != Properties.Settings.Default.RootFolder)
+                    {
+                        if (!familyNameFolder.Contains(folderName))
+                        {
+                            familyNameFolder.Add(folderName);
+                        }
+                    }
+                    label_CategoryName.SelectedItem = familyNameFolder.Where(lastFolder => lastFolder == Path.GetFileName(Properties.Settings.Default.RootFolder)).First();
                 }
-                label_CategoryName.ItemsSource = familyNameFolder;
-                
+
                 temp = Properties.Settings.Default.SymbolList;
                 tempFamilyFolder = Properties.Settings.Default.RootFolder;
                 string category = Properties.Settings.Default.RootFolder;
@@ -205,9 +214,11 @@ namespace zRevitFamilyBrowser.WPF_Classes
                 ListCollectionView collection = new ListCollectionView(fi);
                 collection.GroupDescriptions?.Add(new PropertyGroupDescription("FamilyName"));
                 dataGrid.ItemsSource = collection;
+                Properties.Settings.Default.IsReload = false;
+                Properties.Settings.Default.Save();
             }
         }
-
+        
         private void dataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (dataGrid.Items.Count <= 0) return;
@@ -346,33 +357,41 @@ namespace zRevitFamilyBrowser.WPF_Classes
 
         private void SelectItem(object sender, SelectionChangedEventArgs e)
         {
-            // Check if an item is selected
             if (label_CategoryName.SelectedItem != null)
             {
                 Properties.Settings.Default.SymbolList = string.Empty;
                 string folderPath = Properties.Settings.Default.FamilyFolderPath.Cast<string>()
                                    .Where(folderName => folderName.Contains(label_CategoryName.SelectedItem.ToString())).First();
-                string[] rfaFiles = Directory.GetFiles(folderPath, "*.rfa");
-
-                foreach (string filePath in rfaFiles)
+                try
                 {
-                    string fileName = Path.GetFileName(filePath);
-                    string fileNameWithoutEx = Path.GetFileNameWithoutExtension(filePath);
-                    string fullPath = Path.Combine(folderPath, fileName);
-                    Properties.Settings.Default.RootFolder = folderPath;
-                    Properties.Settings.Default.SymbolList += $"{fileNameWithoutEx} {fullPath}" + "\n";
+                    string[] rfaFiles = Directory.GetFiles(folderPath, "*.rfa");
+                    foreach (string filePath in rfaFiles)
+                    {
+                        string fileName = Path.GetFileName(filePath);
+                        string fileNameWithoutEx = Path.GetFileNameWithoutExtension(filePath);
+                        string fullPath = Path.Combine(folderPath, fileName);
+                        Properties.Settings.Default.RootFolder = folderPath;
+                        Properties.Settings.Default.SymbolList += $"{fileNameWithoutEx} {fullPath}" + "\n";
+                        tempFamilyFolder = string.Empty;
+                    }
+                }
+                catch
+                {
+                    TaskDialog.Show("File not found", "Could not find folder " + Path.GetFileName(folderPath));
+                    familyNameFolder.Remove(Path.GetFileName(folderPath));
+                    string foldersToRemove = Properties.Settings.Default.FamilyFolderPath.Cast<string>()
+                   .Where(fFolderPath => fFolderPath.Contains(folderPath)).First();
+                    Properties.Settings.Default.FamilyFolderPath.Remove(foldersToRemove);
                     Properties.Settings.Default.Save();
-                    Properties.Settings.Default.Reload();
-                    tempFamilyFolder = string.Empty;
                 }
             }
             else
             {
                 Properties.Settings.Default.RootFolder = string.Empty;
                 Properties.Settings.Default.SymbolList = string.Empty;
-                Properties.Settings.Default.Save();
-                Properties.Settings.Default.Reload();
             }
+            Properties.Settings.Default.IsReload = true;
+            Properties.Settings.Default.Save();
         }
     }
 }

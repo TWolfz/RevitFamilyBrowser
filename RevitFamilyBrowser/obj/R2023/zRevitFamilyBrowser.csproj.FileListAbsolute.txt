@@ -20,3 +20,4 @@ D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R20
 D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2023\zRevitFamilyBrowser.csproj.CopyComplete
 D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2023\zRevitFamilyBrowser.dll
 D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2023\zRevitFamilyBrowser.pdb
+D:\Binh's Folder\From Github\TWolf\RevitFamilyBrowser\RevitFamilyBrowser\obj\R2023\zRevitFamilyBrowser.csproj.AssemblyReference.cache
