@@ -70,7 +70,7 @@ namespace zRevitFamilyBrowser
                     foreach (ElementId id in familySymbolId)
                     {
                         var symbol = family.Document.GetElement(id) as FamilySymbol;
-                        if (symbol != null) temp += "#" + symbol.Name;
+                        if (symbol != null) temp += "*" + symbol.Name;
                     }
                     temp += "\n";
                 }

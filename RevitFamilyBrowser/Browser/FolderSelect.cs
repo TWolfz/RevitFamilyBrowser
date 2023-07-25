@@ -65,11 +65,7 @@ namespace zRevitFamilyBrowser.Revit_Classes
             FamilyName = GetFamilyName(FamilyPath);
             //Properties.Settings.Default.SymbolList = string.Empty;
             Assembly addinAssembly = Assembly.GetExecutingAssembly();
-            string addinFolderPath = Path.Combine(Path.GetDirectoryName(addinAssembly.Location), "RevitFamilyBrowser");
-            if (!Directory.Exists(addinFolderPath))
-            {
-                Directory.CreateDirectory(addinFolderPath);
-            }
+
             StringCollection folderPaths = Properties.Settings.Default.FamilyFolderPath;
 
             string addinFamilyFolderPath = Path.Combine(Path.GetDirectoryName(addinAssembly.Location), "RevitFamilyBrowser", Path.GetFileName(fbd.SelectedPath));

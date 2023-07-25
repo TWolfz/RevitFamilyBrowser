@@ -122,8 +122,8 @@ namespace zRevitFamilyBrowser.WPF_Classes
                 DirectoryInfo di = new DirectoryInfo(System.IO.Path.GetTempPath() + "FamilyBrowser\\RevitLogo.bmp");
                 foreach (var item in listData)
                 {
-                    int index = item.IndexOf('#');
-                    string[] symbols = item.Substring(index + 1).Split('#');
+                    int index = item.IndexOf('*');
+                    string[] symbols = item.Substring(index + 1).Split('*');
                     foreach (var symbol in symbols)
                     {
                         FamilyData projectInstance = new FamilyData();

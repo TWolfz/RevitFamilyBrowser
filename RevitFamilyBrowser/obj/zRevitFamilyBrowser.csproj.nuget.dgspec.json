@@ -1,21 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Binh's Folder\\From Github\\TWolf\\RevitFamilyBrowser\\RevitFamilyBrowser\\zRevitFamilyBrowser.csproj": {}
+    "D:\\PTB\\JOB\\Fromgithub\\RevitFamilyBrowser\\RevitFamilyBrowser\\zRevitFamilyBrowser.csproj": {}
   },
   "projects": {
-    "D:\\Binh's Folder\\From Github\\TWolf\\RevitFamilyBrowser\\RevitFamilyBrowser\\zRevitFamilyBrowser.csproj": {
+    "D:\\PTB\\JOB\\Fromgithub\\RevitFamilyBrowser\\RevitFamilyBrowser\\zRevitFamilyBrowser.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Binh's Folder\\From Github\\TWolf\\RevitFamilyBrowser\\RevitFamilyBrowser\\zRevitFamilyBrowser.csproj",
+        "projectUniqueName": "D:\\PTB\\JOB\\Fromgithub\\RevitFamilyBrowser\\RevitFamilyBrowser\\zRevitFamilyBrowser.csproj",
         "projectName": "zRevitFamilyBrowser",
-        "projectPath": "D:\\Binh's Folder\\From Github\\TWolf\\RevitFamilyBrowser\\RevitFamilyBrowser\\zRevitFamilyBrowser.csproj",
-        "packagesPath": "C:\\Users\\thanh_\\.nuget\\packages\\",
-        "outputPath": "D:\\Binh's Folder\\From Github\\TWolf\\RevitFamilyBrowser\\RevitFamilyBrowser\\obj\\",
+        "projectPath": "D:\\PTB\\JOB\\Fromgithub\\RevitFamilyBrowser\\RevitFamilyBrowser\\zRevitFamilyBrowser.csproj",
+        "packagesPath": "C:\\Users\\phant\\.nuget\\packages\\",
+        "outputPath": "D:\\PTB\\JOB\\Fromgithub\\RevitFamilyBrowser\\RevitFamilyBrowser\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "configFilePaths": [
-          "C:\\Users\\thanh_\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\phant\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -57,6 +57,9 @@
       },
       "runtimes": {
         "win": {
+          "#import": []
+        },
+        "win-arm64": {
           "#import": []
         },
         "win-x64": {
